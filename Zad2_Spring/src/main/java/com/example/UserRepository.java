@@ -44,7 +44,6 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
-    @Override
     public void save() {
         try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
             for (User u :users) {
@@ -55,7 +54,6 @@ public class UserRepository implements IUserRepository {
         }
     }
 
-    @Override
     public void load() {
         users.clear();
         try (Scanner sc = new Scanner(new File(fileName))) {
@@ -66,5 +64,31 @@ public class UserRepository implements IUserRepository {
         } catch (FileNotFoundException e) {
             System.out.println("Brak pliku " + fileName);
         }
+    }
+
+    @Override
+    public boolean add(User user) {
+        if (getUser(user.getLogin()) != null) {
+            return false;
+        }
+        users.add(user.copy());
+        save();
+        return true;
+    }
+
+    @Override
+    public boolean remove(String login) {
+        User user = getUser(login);
+        if (user == null) {
+            return false;
+        }
+        if (!user.getRentedVehicleId().equals("NONE")) {
+            return false;
+        }
+        boolean removed = users.removeIf(u -> u.getLogin().equals(login));
+        if (removed) {
+            save();
+        }
+        return removed;
     }
 }

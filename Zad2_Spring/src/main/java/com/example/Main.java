@@ -4,13 +4,55 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Car f = new Car("100", "f", "f", 100, 100, true);
+        Motorcycle f2 = new Motorcycle("100", "f", "f", 100, 100, true, MotorcycleCategory.A);
+        Motorcycle f3 = new Motorcycle("101", "f", "f", 100, 100, true, MotorcycleCategory.A);
+
+        System.out.println(f2.equals(f));
+        System.out.println("f: " + f.hashCode() + " f2: " + f2.hashCode());
+        System.out.println(f3.equals(f));
+        System.out.println("f: " + f.hashCode() + " f3: " + f3.hashCode());
+
         IVehicleRepository vehicleRepo = new VehicleRepository();
         IUserRepository userRepo = new UserRepository();
         Authentication auth = new Authentication(userRepo);
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nLOGOWANIE");
+            System.out.println("\nJESTEŚ W EKRANIE STARTOWYM!");
+            System.out.println("1. Zaloguj się");
+            System.out.println("2. Zarejestruj się");
+            System.out.print("Opcja: ");
+            String startChoice = scanner.nextLine();
+
+
+
+
+            if(startChoice.equals("2")) {
+                System.out.println("\n REJESTRACJA");
+                System.out.print("Podaj login: ");
+                String newLogin = scanner.nextLine();
+
+                if(userRepo.getUser(newLogin) != null) {
+                    System.out.println("Błąd! Taki użytkownik już istnieje!");
+                    continue;
+                }
+                System.out.print("Podaj hasło: ");
+                String newPassword = scanner.nextLine();
+                String hashedPassword = Authentication.hashPassword(newPassword);
+
+                User newUser = new User(newLogin, hashedPassword, Role.USER, "NONE");
+                if (userRepo.add(newUser)) {
+                    System.out.println("Sukces! Możesz się teraz zalogować.");
+                } else {
+                    System.out.println("Błąd rejestracji.");
+                }
+                continue;
+                } else if (!startChoice.equals("1")) {
+                System.out.println("Nieprawidłowy wybór.");
+                continue;
+            }
+            System.out.println("JESTEŚ W EKRANIE LOGOWANIA!");
             System.out.print("Login: ");
             String login = scanner.nextLine();
 
@@ -34,6 +76,7 @@ public class Main {
                     System.out.println("3. Lista pojazdów");
                     System.out.println("4. Lista użytkowników");
                     System.out.println("5. Wyloguj");
+                    System.out.println("6. Usuń użytkownika");
                     System.out.print("Wybierz opcję: ");
                     String choice = scanner.nextLine();
 
@@ -50,7 +93,7 @@ public class Main {
                             vehicleRepo.add(new Car(id, brand, model, year, price, false));
                         } else {
                             System.out.print("Kategoria: "); String category = scanner.nextLine();
-                            vehicleRepo.add(new Motorcycle(id, brand, model, year, price, false, category));
+                            vehicleRepo.add(new Motorcycle(id, brand, model, year, price, false, MotorcycleCategory.valueOf(category.toUpperCase())));
                         }
                         System.out.println("Dodano pojazd.");
                     } else if (choice.equals("2")) {
@@ -63,7 +106,15 @@ public class Main {
                         userRepo.getUsers().forEach(System.out::println);
                     } else if (choice.equals("5")) {
                         loggedIn = false;
+                    } else if (choice.equals("6")) {
+                    System.out.print("Podaj nazwe użytkownika do usuniecia: ");
+                    String userToRemove = scanner.nextLine();
+                    if (userRepo.remove(userToRemove)) {
+                        System.out.println("Użytkownik został usunięty.");
+                    } else {
+                        System.out.println("Błąd: Użytkownik nie istnieje lub ma wypożyczony pojazd!");
                     }
+                }
 
                 } else {
                     System.out.println("1. Wypożycz pojazd");

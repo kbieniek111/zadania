@@ -75,6 +75,16 @@ public abstract  class Vehicle {
         return "ID: " + id + ", Marka: " + brand + ", Model: " + model +
                 ", Rok Produkcji: " + year + ", Cena: " + price + ", Czy wypożyczony: " + (rented ? "TAK" : "NIE");
     }
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Vehicle v)) return false;
+        return id.equals(v.id);
+    }
 
+    @Override
+    public final int hashCode() {
+        return id.hashCode();
+    }
 
 }

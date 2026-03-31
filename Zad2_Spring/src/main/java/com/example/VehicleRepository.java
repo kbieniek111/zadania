@@ -77,7 +77,6 @@ public class VehicleRepository implements IVehicleRepository {
         return false;
     }
 
-    @Override
     public void save() {
         try (PrintWriter out = new PrintWriter(new FileWriter(fileName))) {
             for (Vehicle v : vehicles) {
@@ -88,7 +87,6 @@ public class VehicleRepository implements IVehicleRepository {
         }
     }
 
-    @Override
     public void load() {
         vehicles.clear();
         File file = new File(fileName);
@@ -105,8 +103,9 @@ public class VehicleRepository implements IVehicleRepository {
                     vehicles.add(new Car(parts[1], parts[2], parts[3],
                             Integer.parseInt(parts[4]), Double.parseDouble(parts[5]), Boolean.parseBoolean(parts[6])));
                 } else {
+                    MotorcycleCategory cat = MotorcycleCategory.valueOf(parts[7]);
                     vehicles.add(new Motorcycle(parts[1], parts[2], parts[3],
-                            Integer.parseInt(parts[4]), Double.parseDouble(parts[5]), Boolean.parseBoolean(parts[6]), parts[7]));
+                            Integer.parseInt(parts[4]), Double.parseDouble(parts[5]), Boolean.parseBoolean(parts[6]), cat));
                 }
             }
         } catch (FileNotFoundException e) {
