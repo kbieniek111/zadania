@@ -43,7 +43,7 @@ public class UI {
     }
 
     private void showLoginMenu() {
-        System.out.println("\n--- SYSTEM WYPOŻYCZALNI ---");
+        System.out.println("\nSYSTEM WYPOŻYCZALNI");
         System.out.println("1. Zaloguj się");
         System.out.println("2. Zarejestruj się");
         System.out.println("0. Wyjście");
@@ -78,7 +78,7 @@ public class UI {
     }
 
     private void showAdminMenu() {
-        System.out.println("\n--- MENU ADMINA ---");
+        System.out.println("\nMENU ADMINA");
         System.out.println("1. Pokaż wszystkie pojazdy");
         System.out.println("2. Usuń pojazd");
         System.out.println("0. Wyloguj");
@@ -101,7 +101,7 @@ public class UI {
     }
 
     private void showUserMenu() {
-        System.out.println("\n--- MENU UŻYTKOWNIKA ---");
+        System.out.println("\nMENU UŻYTKOWNIKA");
         System.out.println("1. Pokaż dostępne pojazdy");
         System.out.println("2. Wypożycz pojazd");
         System.out.println("3. Zwróć pojazd");
