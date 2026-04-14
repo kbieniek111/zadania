@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>com.example.Main</mainClass>
+                  <mainClass>com.umcsuser.carrent.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>

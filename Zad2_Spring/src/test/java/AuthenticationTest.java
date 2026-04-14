@@ -1,6 +1,7 @@
 package com.example;
 
 import org.junit.jupiter.api.Test;
+import umcsuser.carrent.models.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
