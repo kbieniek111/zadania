@@ -8,6 +8,9 @@ import com.umcsuser.carrent.repositories.impl.RentalJsonRepository;
 import com.umcsuser.carrent.repositories.impl.UserJsonRepository;
 import com.umcsuser.carrent.repositories.impl.VehicleCategoryConfigJsonRepository;
 import com.umcsuser.carrent.repositories.impl.VehicleJsonRepository;
+import com.umcsuser.carrent.repositories.impl.RentalJdbcRepository;
+import com.umcsuser.carrent.repositories.impl.UserJdbcRepository;
+import com.umcsuser.carrent.repositories.impl.VehicleJdbcRepository;
 import com.umcsuser.carrent.services.AuthService;
 import com.umcsuser.carrent.services.RentalService;
 import com.umcsuser.carrent.services.UserService;
@@ -17,10 +20,23 @@ import com.umcsuser.carrent.services.VehicleValidator;
 
 public class Main {
     public static void main(String[] args) {
-        VehicleRepository vehicleRepository = new VehicleJsonRepository();
-        UserRepository userRepository = new UserJsonRepository();
-        RentalRepository rentalRepository = new RentalJsonRepository();
+        String mode = args.length > 0 ? args[0] : "json";
+        System.out.println("Tryb: " + mode.toUpperCase());
+
+        VehicleRepository vehicleRepository;
+        UserRepository userRepository;
+        RentalRepository rentalRepository;
         VehicleCategoryConfigRepository categoryConfigRepository = new VehicleCategoryConfigJsonRepository();
+
+        if (mode.equalsIgnoreCase("jdbc")) {
+            vehicleRepository = new VehicleJdbcRepository();
+            userRepository = new UserJdbcRepository();
+            rentalRepository = new RentalJdbcRepository();
+        } else {
+            vehicleRepository = new VehicleJsonRepository();
+            userRepository = new UserJsonRepository();
+            rentalRepository = new RentalJsonRepository();
+        }
 
         AuthService authService = new AuthService(userRepository);
         VehicleCategoryConfigService categoryConfigService = new VehicleCategoryConfigService(categoryConfigRepository);
@@ -36,7 +52,6 @@ public class Main {
                 userService,
                 categoryConfigService
         );
-
         ui.start();
     }
 }
