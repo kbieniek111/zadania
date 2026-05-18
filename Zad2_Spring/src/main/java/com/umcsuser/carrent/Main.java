@@ -4,19 +4,8 @@ import com.umcsuser.carrent.repositories.RentalRepository;
 import com.umcsuser.carrent.repositories.UserRepository;
 import com.umcsuser.carrent.repositories.VehicleCategoryConfigRepository;
 import com.umcsuser.carrent.repositories.VehicleRepository;
-import com.umcsuser.carrent.repositories.impl.RentalJsonRepository;
-import com.umcsuser.carrent.repositories.impl.UserJsonRepository;
-import com.umcsuser.carrent.repositories.impl.VehicleCategoryConfigJsonRepository;
-import com.umcsuser.carrent.repositories.impl.VehicleJsonRepository;
-import com.umcsuser.carrent.repositories.impl.RentalJdbcRepository;
-import com.umcsuser.carrent.repositories.impl.UserJdbcRepository;
-import com.umcsuser.carrent.repositories.impl.VehicleJdbcRepository;
-import com.umcsuser.carrent.services.AuthService;
-import com.umcsuser.carrent.services.RentalService;
-import com.umcsuser.carrent.services.UserService;
-import com.umcsuser.carrent.services.VehicleCategoryConfigService;
-import com.umcsuser.carrent.services.VehicleService;
-import com.umcsuser.carrent.services.VehicleValidator;
+import com.umcsuser.carrent.repositories.impl.*;
+import com.umcsuser.carrent.services.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,22 +17,29 @@ public class Main {
         RentalRepository rentalRepository;
         VehicleCategoryConfigRepository categoryConfigRepository = new VehicleCategoryConfigJsonRepository();
 
-        if (mode.equalsIgnoreCase("jdbc")) {
+        if (mode.equalsIgnoreCase("hibernate")) {
+            System.out.println("Ładowanie bazy danych hibernate");
+            vehicleRepository = new VehicleHibernateRepository();
+            userRepository = new UserHibernateRepository();
+            rentalRepository = new RentalHibernateRepository();
+        } else if (mode.equalsIgnoreCase("jdbc")) {
+            System.out.println("Ładowanie bazy danych JDBC");
             vehicleRepository = new VehicleJdbcRepository();
             userRepository = new UserJdbcRepository();
             rentalRepository = new RentalJdbcRepository();
         } else {
+            System.out.println("Ładowanie plików JSON");
             vehicleRepository = new VehicleJsonRepository();
             userRepository = new UserJsonRepository();
             rentalRepository = new RentalJsonRepository();
         }
 
-        AuthService authService = new AuthService(userRepository);
-        VehicleCategoryConfigService categoryConfigService = new VehicleCategoryConfigService(categoryConfigRepository);
+        IAuthService authService = new AuthService(userRepository);
+        IVehicleCategoryConfigService categoryConfigService = new VehicleCategoryConfigService(categoryConfigRepository);
         VehicleValidator vehicleValidator = new VehicleValidator(categoryConfigService);
-        VehicleService vehicleService = new VehicleService(vehicleRepository, rentalRepository, vehicleValidator);
-        RentalService rentalService = new RentalService(rentalRepository, vehicleRepository);
-        UserService userService = new UserService(userRepository, rentalService);
+        IVehicleService vehicleService = new VehicleService(vehicleRepository, rentalRepository, vehicleValidator);
+        IRentalService rentalService = new RentalService(rentalRepository, vehicleRepository);
+        IUserService userService = new UserService(userRepository, rentalService);
 
         UI ui = new UI(
                 authService,

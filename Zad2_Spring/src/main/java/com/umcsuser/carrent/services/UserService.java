@@ -4,24 +4,27 @@ import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.repositories.UserRepository;
 import java.util.List;
 
-public class UserService {
+public class UserService implements IUserService {
     private final UserRepository userRepository;
-    private final RentalService rentalService;
+    private final IRentalService rentalService;
 
-    public UserService(UserRepository userRepository, RentalService rentalService) {
+    public UserService(UserRepository userRepository, IRentalService rentalService) {
         this.userRepository = userRepository;
         this.rentalService = rentalService;
     }
 
+    @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
+    @Override
     public User findById(String userId) {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono użytkownika."));
     }
 
+    @Override
     public void deleteUser(String targetUserId, String loggedUserId) {
         User targetUser = findById(targetUserId);
         if (targetUserId.equals(loggedUserId)) {

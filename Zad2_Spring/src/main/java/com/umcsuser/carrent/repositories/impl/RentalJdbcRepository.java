@@ -1,6 +1,8 @@
 package com.umcsuser.carrent.repositories.impl;
 
 import com.umcsuser.carrent.models.Rental;
+import com.umcsuser.carrent.models.User;
+import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
 import java.sql.*;
 import java.util.*;
@@ -41,10 +43,10 @@ public class RentalJdbcRepository implements RentalRepository {
         try (Connection conn = DriverManager.getConnection(dbUrl);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, rental.getId());
-            pstmt.setString(2, rental.getVehicleId());
-            pstmt.setString(3, rental.getUserId());
-            pstmt.setString(4, rental.getRentDateTime());
-            pstmt.setString(5, rental.getReturnDateTime());
+            pstmt.setString(2, rental.getVehicle().getId());
+            pstmt.setString(3, rental.getUser().getId());
+            pstmt.setString(4, rental.getRentDate());
+            pstmt.setString(5, rental.getReturnDate());
             pstmt.executeUpdate();
         } catch (Exception e) { e.printStackTrace(); }
         return rental;
@@ -79,10 +81,17 @@ public class RentalJdbcRepository implements RentalRepository {
     private Rental map(ResultSet rs) throws Exception {
         Rental r = new Rental();
         r.setId(rs.getString("id"));
-        r.setVehicleId(rs.getString("vehicle_id"));
-        r.setUserId(rs.getString("user_id"));
-        r.setRentDateTime(rs.getString("rent_date"));
-        r.setReturnDateTime(rs.getString("return_date"));
+
+        Vehicle vehicle = new Vehicle();
+        vehicle.setId(rs.getString("vehicle_id"));
+        r.setVehicle(vehicle);
+
+        User user = new User();
+        user.setId(rs.getString("user_id"));
+        r.setUser(user);
+
+        r.setRentDate(rs.getString("rent_date"));
+        r.setReturnDate(rs.getString("return_date"));
         return r;
     }
 }

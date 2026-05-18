@@ -9,15 +9,16 @@ import java.util.Scanner;
 
 public class UI {
 
-    private final AuthService authService;
-    private final VehicleService vehicleService;
-    private final RentalService rentalService;
-    private final UserService userService;
-    private final VehicleCategoryConfigService categoryConfigService;
+    private final IAuthService authService;
+    private final IVehicleService vehicleService;
+    private final IRentalService rentalService;
+    private final IUserService userService;
+    private final IVehicleCategoryConfigService categoryConfigService;
+
     private final Scanner scanner = new Scanner(System.in);
 
-    public UI(AuthService authService, VehicleService vehicleService, RentalService rentalService,
-              UserService userService, VehicleCategoryConfigService categoryConfigService) {
+    public UI(IAuthService authService, IVehicleService vehicleService, IRentalService rentalService,
+              IUserService userService, IVehicleCategoryConfigService categoryConfigService) {
         this.authService = authService;
         this.vehicleService = vehicleService;
         this.rentalService = rentalService;
@@ -200,9 +201,10 @@ public class UI {
                     .ifPresentOrElse(
                             rental -> {
                                 try {
-                                    System.out.println("Aktualnie wypożyczony pojazd: " + vehicleService.findById(rental.getVehicleId()));
+                                    String vId = (rental.getVehicle() != null) ? rental.getVehicle().getId() : "nieznany";
+                                    System.out.println("Aktualnie wypożyczony pojazd: " + vehicleService.findById(vId));
                                 } catch (Exception e) {
-                                    System.out.println("Aktualnie wypożyczony pojazd: " + rental.getVehicleId() + " (brak szczegółów)");
+                                    System.out.println("Aktualnie wypożyczony pojazd: (brak szczegółów)");
                                 }
                             },
                             () -> System.out.println("Brak aktywnego wypożyczenia.")
@@ -276,12 +278,14 @@ public class UI {
 
         String login = "nieznany";
         try {
-            login = userService.findById(rental.getUserId()).getLogin();
+            String uId = (rental.getUser() != null) ? rental.getUser().getId() : "brak id";
+            login = userService.findById(uId).getLogin();
         } catch (Exception ignored) {}
 
         String vehicle = "nieznany";
         try {
-            vehicle = vehicleService.findById(rental.getVehicleId()).toString();
+            String vId = (rental.getVehicle() != null) ? rental.getVehicle().getId() : "brak id";
+            vehicle = vehicleService.findById(vId).toString();
         } catch (Exception ignored) {}
 
         System.out.println("  user: " + login);

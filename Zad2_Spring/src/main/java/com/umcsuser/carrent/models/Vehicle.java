@@ -5,13 +5,17 @@ import lombok.*;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
+import jakarta.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString
+
+@Entity
+@Table(name = "vehicle")
 public class Vehicle {
+    @Id
     private String id;
     private String category;
     private String brand;
@@ -20,6 +24,7 @@ public class Vehicle {
     private String plate;
     private double price;
 
+    @Transient
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
     private Map<String, Object> attributes = new HashMap<>();

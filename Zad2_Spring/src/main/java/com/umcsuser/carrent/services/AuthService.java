@@ -6,13 +6,14 @@ import com.umcsuser.carrent.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.Optional;
 
-public class AuthService {
+public class AuthService implements IAuthService {
     private final UserRepository userRepository;
 
     public AuthService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
+    @Override
     public boolean register(String login, String password) {
         if (userRepository.findByLogin(login).isPresent()) {
             return false;
@@ -29,6 +30,7 @@ public class AuthService {
         return true;
     }
 
+    @Override
     public Optional<User> login(String login, String password) {
         Optional<User> userOpt = userRepository.findByLogin(login);
         if (userOpt.isPresent()) {

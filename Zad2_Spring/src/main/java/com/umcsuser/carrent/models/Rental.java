@@ -1,6 +1,7 @@
 package com.umcsuser.carrent.models;
 import lombok.*;
-
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
@@ -8,25 +9,38 @@ import lombok.*;
 @Builder
 @EqualsAndHashCode(of = "id")
 @ToString
+@Entity
+@Table(name = "rental")
 public class Rental {
 
+    @Id
     private String id;
-    private String vehicleId;
-    private String userId;
-    private String rentDateTime;
-    private String returnDateTime;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
+
+    @Column(name = "rent_date")
+    private String rentDate;
+
+    @Column(name = "return_date")
+    private String returnDate;
 
     public Rental copy() {
         return Rental.builder()
                 .id(id)
-                .vehicleId(vehicleId)
-                .userId(userId)
-                .rentDateTime(rentDateTime)
-                .returnDateTime(returnDateTime)
+                .vehicle(vehicle)
+                .user(user)
+                .rentDate(rentDate)
+                .returnDate(returnDate)
                 .build();
     }
 
     public boolean isActive() {
-        return returnDateTime == null || returnDateTime.isBlank();
+        return returnDate == null || returnDate.isBlank();
     }
 }

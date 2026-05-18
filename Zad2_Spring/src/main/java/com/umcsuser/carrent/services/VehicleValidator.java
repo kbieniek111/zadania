@@ -6,16 +6,16 @@ import com.umcsuser.carrent.models.VehicleCategoryConfig;
 import java.util.Map;
 
 public class VehicleValidator {
-    private final VehicleCategoryConfigService configService;
+    private final IVehicleCategoryConfigService categoryConfigService;
 
-    public VehicleValidator(VehicleCategoryConfigService configService) {
-        this.configService = configService;
+    public VehicleValidator(IVehicleCategoryConfigService categoryConfigService) {
+        this.categoryConfigService = categoryConfigService;
     }
 
     public void validate(Vehicle vehicle) {
         if (vehicle == null) throw new IllegalArgumentException("Pojazd nie może być nullem.");
         validateBaseFields(vehicle);
-        validateAttributes(vehicle.getAttributes(), configService.getByCategory(vehicle.getCategory()));
+        validateAttributes(vehicle.getAttributes(), categoryConfigService.getByCategory(vehicle.getCategory()));
     }
 
     private void validateBaseFields(Vehicle vehicle) {
