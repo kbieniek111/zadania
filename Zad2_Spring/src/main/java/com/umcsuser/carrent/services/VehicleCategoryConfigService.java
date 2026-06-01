@@ -1,25 +1,39 @@
 package com.umcsuser.carrent.services;
 
-import com.umcsuser.carrent.models.VehicleCategoryConfig;
-import com.umcsuser.carrent.repositories.VehicleCategoryConfigRepository;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
+
+import jakarta.annotation.PostConstruct;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
 @Service
-public class VehicleCategoryConfigService implements IVehicleCategoryConfigService {
-    private final VehicleCategoryConfigRepository configRepository;
+public class VehicleCategoryConfigService {
 
-    public VehicleCategoryConfigService(VehicleCategoryConfigRepository configRepository) {
-        this.configRepository = configRepository;
+    private List<Map<String, Object>> categories = new ArrayList<>();
+
+    @PostConstruct
+    public void init() {
+        Map<String, Object> carCategory = new HashMap<>();
+        carCategory.put("category", "Car");
+
+        Map<String, String> carAttributes = new HashMap<>();
+        carAttributes.put("fuelType", "string");
+        carCategory.put("attributes", carAttributes);
+
+        categories.add(carCategory);
     }
 
-    @Override
-    public List<VehicleCategoryConfig> findAllCategories() {
-        return configRepository.findAll();
-    }
-
-    @Override
-    public VehicleCategoryConfig getByCategory(String category) {
-        return configRepository.findByCategory(category)
+    public Map<String, Object> getByCategory(String category) {
+        return categories.stream()
+                .filter(c -> c.get("category").equals(category))
+                .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Nieznana kategoria pojazdu: " + category));
     }
 }
