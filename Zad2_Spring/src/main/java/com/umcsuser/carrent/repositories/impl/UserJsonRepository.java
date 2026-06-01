@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@org.springframework.stereotype.Repository
+@org.springframework.context.annotation.Profile("json")
 public class UserJsonRepository implements UserRepository {
     private final JsonFileStorage<User> storage = new JsonFileStorage<>("users.json", new TypeToken<List<User>>() {}.getType());
     private final List<User> users;

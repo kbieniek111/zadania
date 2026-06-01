@@ -4,7 +4,7 @@ import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.models.VehicleCategoryConfig;
 
 import java.util.Map;
-
+@org.springframework.stereotype.Component
 public class VehicleValidator {
     private final IVehicleCategoryConfigService categoryConfigService;
 

@@ -5,7 +5,8 @@ import com.umcsuser.carrent.repositories.RentalRepository;
 import com.umcsuser.carrent.repositories.VehicleRepository;
 
 import java.util.List;
-
+@org.springframework.stereotype.Service
+@org.springframework.transaction.annotation.Transactional
 public class VehicleService implements IVehicleService {
     private final VehicleRepository vehicleRepository;
     private final RentalRepository rentalRepository;

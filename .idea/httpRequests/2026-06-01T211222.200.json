@@ -1,0 +1,22 @@
+{
+  "id": "bee05e1a-36d4-47cf-9c37-1749ff024c07",
+  "user": {
+    "id": "43f4df2d-9e9c-478f-a7d5-862f42db5bdb",
+    "login": null,
+    "passwordHash": null,
+    "role": null
+  },
+  "vehicle": {
+    "id": "v1",
+    "category": null,
+    "brand": null,
+    "model": null,
+    "year": 0,
+    "plate": null,
+    "price": 0.0,
+    "attributes": {}
+  },
+  "rentDate": "2026-06-01T21:11:36.204814",
+  "returnDate": "2026-06-01T21:12:22.702197500",
+  "active": false
+}

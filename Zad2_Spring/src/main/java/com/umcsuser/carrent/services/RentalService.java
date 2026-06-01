@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@org.springframework.stereotype.Service
+@org.springframework.transaction.annotation.Transactional
 public class RentalService implements IRentalService {
     private final RentalRepository rentalRepository;
     private final VehicleRepository vehicleRepository;

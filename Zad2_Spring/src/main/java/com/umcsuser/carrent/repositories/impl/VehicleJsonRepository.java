@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@org.springframework.stereotype.Repository
+@org.springframework.context.annotation.Profile("json")
 public class VehicleJsonRepository implements VehicleRepository {
     private final JsonFileStorage<Vehicle> storage = new JsonFileStorage<>("vehicles.json", new TypeToken<List<Vehicle>>() {}.getType());
     private final List<Vehicle> vehicles;

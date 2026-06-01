@@ -3,7 +3,8 @@ package com.umcsuser.carrent.services;
 import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.repositories.UserRepository;
 import java.util.List;
-
+@org.springframework.stereotype.Service
+@org.springframework.transaction.annotation.Transactional
 public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final IRentalService rentalService;

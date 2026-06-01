@@ -1,0 +1,405 @@
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211223.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T211222.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211140.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211137.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T211136.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211134.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211133.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T211130.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211127.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T211123.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T211118.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210901.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210836.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210835.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210822.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210811.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210805.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210758.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d.../rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210738.500.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d.../rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210736.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210734.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/u1/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210434.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210413.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/u1/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210410.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210406.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/u1/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-01T210357.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-01T210337.200.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T205215.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T204715.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T203632.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T203618.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T203617.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 158
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "category": null,
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024,
+  "plate": "LUB99999",
+  "price": 500.0,
+  "attributes": {}
+}
+
+<> 2026-06-01T203614.500.json
+
+###
+
+POST http://localhost:8080/api/vehicles
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "id": "car-999",
+  "brand": "Porsche",
+  "model": "911",
+  "year": 2024
+}
+
+<> 2026-06-01T203351.500.json
+
+###
+

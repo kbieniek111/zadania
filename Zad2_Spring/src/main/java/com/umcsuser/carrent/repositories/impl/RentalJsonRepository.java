@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+@org.springframework.stereotype.Repository
+@org.springframework.context.annotation.Profile("json")
 public class RentalJsonRepository implements RentalRepository {
     private final JsonFileStorage<Rental> storage = new JsonFileStorage<>("rentals.json", new TypeToken<List<Rental>>() {}.getType());
     private final List<Rental> rentals;

@@ -7,7 +7,10 @@ import com.umcsuser.carrent.repositories.VehicleCategoryConfigRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class VehicleCategoryConfigJsonRepository implements VehicleCategoryConfigRepository {
     private final JsonFileStorage<VehicleCategoryConfig> storage =
             new JsonFileStorage<>("categories.json", new TypeToken<List<VehicleCategoryConfig>>() {}.getType());

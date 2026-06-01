@@ -1,0 +1,22 @@
+###
+GET http://localhost:8080/api/vehicles?available=true
+
+###
+
+###  Wypożyczenie auta
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+
+###
+
+### Ponowne sprawdzenie
+GET http://localhost:8080/api/vehicles?available=true
+
+###
+
+### Zwrot samochodu
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+
+###
+
+### Ostateczne sprawdzenie
+GET http://localhost:8080/api/vehicles?available=true

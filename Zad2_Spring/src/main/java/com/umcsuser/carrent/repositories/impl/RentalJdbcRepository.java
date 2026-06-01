@@ -4,32 +4,57 @@ import com.umcsuser.carrent.models.Rental;
 import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
-import java.sql.*;
-import java.util.*;
+import org.springframework.context.annotation.Profile;
+import org.springframework.jdbc.datasource.DataSourceUtils;
+import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+@Profile("jdbc")
 public class RentalJdbcRepository implements RentalRepository {
-    private final String dbUrl = System.getenv("DB_URL");
+
+    private final DataSource dataSource;
+
+    public RentalJdbcRepository(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
     public List<Rental> findAll() {
         List<Rental> rentals = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM rental");
+        Connection conn = DataSourceUtils.getConnection(dataSource);
+
+        try (PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM rental");
              ResultSet rs = pstmt.executeQuery()) {
-            while (rs.next()) rentals.add(map(rs));
-        } catch (Exception e) { e.printStackTrace(); }
+            while (rs.next()) {
+                rentals.add(map(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error occurred while reading rentals", e);
+        } finally {
+            DataSourceUtils.releaseConnection(conn, dataSource);
+        }
         return rentals;
     }
 
     @Override
     public Optional<Rental> findById(String id) {
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM rental WHERE id = ?")) {
+        Connection conn = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM rental WHERE id = ?")) {
             pstmt.setString(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) return Optional.of(map(rs));
             }
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error occurred while reading rental by id", e);
+        } finally {
+            DataSourceUtils.releaseConnection(conn, dataSource);
+        }
         return Optional.empty();
     }
 
@@ -40,45 +65,56 @@ public class RentalJdbcRepository implements RentalRepository {
         }
         String sql = "INSERT INTO rental (id, vehicle_id, user_id, rent_date, return_date) VALUES (?, ?, ?, ?, ?) " +
                 "ON CONFLICT (id) DO UPDATE SET return_date = EXCLUDED.return_date";
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+        Connection conn = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, rental.getId());
             pstmt.setString(2, rental.getVehicle().getId());
             pstmt.setString(3, rental.getUser().getId());
             pstmt.setString(4, rental.getRentDate());
             pstmt.setString(5, rental.getReturnDate());
             pstmt.executeUpdate();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error occurred while saving rental", e);
+        } finally {
+            DataSourceUtils.releaseConnection(conn, dataSource);
+        }
         return rental;
     }
 
     @Override
     public void deleteById(String id) {
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement("DELETE FROM rental WHERE id = ?")) {
+        Connection conn = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement pstmt = conn.prepareStatement("DELETE FROM rental WHERE id = ?")) {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
-        } catch (Exception e) { e.printStackTrace(); }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error occurred while deleting rental", e);
+        } finally {
+            DataSourceUtils.releaseConnection(conn, dataSource);
+        }
     }
 
     @Override
     public Optional<Rental> findByVehicleIdAndReturnDateIsNull(String vehicleId) {
         String sql = "SELECT * FROM rental WHERE vehicle_id = ? AND return_date IS NULL";
-        try (Connection conn = DriverManager.getConnection(dbUrl);
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        Connection conn = DataSourceUtils.getConnection(dataSource);
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, vehicleId);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(map(rs));
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error occurred while finding active rental", e);
+        } finally {
+            DataSourceUtils.releaseConnection(conn, dataSource);
         }
         return Optional.empty();
     }
 
-    private Rental map(ResultSet rs) throws Exception {
+    private Rental map(ResultSet rs) throws SQLException {
         Rental r = new Rental();
         r.setId(rs.getString("id"));
 
