@@ -3,6 +3,118 @@ User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
+<> 2026-06-02T000803.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000802.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-02T000800.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000758.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000756.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-02T000753.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000749.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000747.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/return
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-02T000744.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000742.200.json
+
+###
+
+POST http://localhost:8080/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2026-06-02T000739.500.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2026-06-02T000735.200.json
+
+###
+
+GET http://localhost:8080/api/vehicles?available=true
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2024.3.4
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
 <> 2026-06-01T211223.200.json
 
 ###

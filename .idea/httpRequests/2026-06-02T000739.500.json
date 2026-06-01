@@ -1,0 +1,6 @@
+{
+  "timestamp": "2026-06-01T22:07:39.591+00:00",
+  "status": 500,
+  "error": "Internal Server Error",
+  "path": "/api/rentals/users/43f4df2d-9e9c-478f-a7d5-862f42db5bdb/rent/v1"
+}
