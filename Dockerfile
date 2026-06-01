@@ -10,6 +10,8 @@ WORKDIR /app
 
 COPY --from=build /app/Zad2_Spring/target/*.jar app.jar
 
+COPY --from=build /app/Zad2_Spring/*.json ./
+
 EXPOSE 8080
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
