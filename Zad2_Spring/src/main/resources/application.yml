@@ -1,6 +1,8 @@
 spring:
   profiles:
-    active: jdbc
+    active: ${APP_PROFILE:json}
+server:
+  port: ${PORT:8080}
 
 ---
 spring:
@@ -24,7 +26,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
