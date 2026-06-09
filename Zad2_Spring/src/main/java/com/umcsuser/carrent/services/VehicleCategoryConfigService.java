@@ -1,22 +1,20 @@
 package com.umcsuser.carrent.services;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.umcsuser.carrent.models.VehicleCategoryConfig;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.PostConstruct;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
-public class VehicleCategoryConfigService {
+public class VehicleCategoryConfigService implements IVehicleCategoryConfigService {
 
     private List<Map<String, Object>> categories = new ArrayList<>();
+    private ObjectMapper objectMapper = new ObjectMapper(); // Magiczne narzędzie do konwersji
 
     @PostConstruct
     public void init() {
@@ -30,10 +28,22 @@ public class VehicleCategoryConfigService {
         categories.add(carCategory);
     }
 
-    public Map<String, Object> getByCategory(String category) {
-        return categories.stream()
+    @Override
+    public List<VehicleCategoryConfig> findAllCategories() {
+        List<VehicleCategoryConfig> resultList = new ArrayList<>();
+        for (Map<String, Object> map : categories) {
+            resultList.add(objectMapper.convertValue(map, VehicleCategoryConfig.class));
+        }
+        return resultList;
+    }
+
+    @Override
+    public VehicleCategoryConfig getByCategory(String category) {
+        Map<String, Object> foundMap = categories.stream()
                 .filter(c -> c.get("category").equals(category))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Nieznana kategoria pojazdu: " + category));
+
+        return objectMapper.convertValue(foundMap, VehicleCategoryConfig.class);
     }
 }
