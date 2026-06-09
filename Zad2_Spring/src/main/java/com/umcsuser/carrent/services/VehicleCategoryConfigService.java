@@ -14,18 +14,24 @@ import java.util.Map;
 public class VehicleCategoryConfigService implements IVehicleCategoryConfigService {
 
     private List<Map<String, Object>> categories = new ArrayList<>();
-    private ObjectMapper objectMapper = new ObjectMapper(); // Magiczne narzędzie do konwersji
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     @PostConstruct
     public void init() {
-        Map<String, Object> carCategory = new HashMap<>();
-        carCategory.put("category", "Car");
+        Map<String, Object> car = new HashMap<>();
+        car.put("category", "Car");
+        car.put("attributes", Map.of("fuelType", "string"));
+        categories.add(car);
 
-        Map<String, String> carAttributes = new HashMap<>();
-        carAttributes.put("fuelType", "string");
-        carCategory.put("attributes", carAttributes);
+        Map<String, Object> moto = new HashMap<>();
+        moto.put("category", "Motorcycle");
+        moto.put("attributes", Map.of("licence", "string", "fuelType", "string"));
+        categories.add(moto);
 
-        categories.add(carCategory);
+        Map<String, Object> bus = new HashMap<>();
+        bus.put("category", "Bus");
+        bus.put("attributes", Map.of("seats", "integer"));
+        categories.add(bus);
     }
 
     @Override
