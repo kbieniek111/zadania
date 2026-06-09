@@ -68,7 +68,7 @@ public class VehicleJdbcRepository implements VehicleRepository {
             pstmt.setString(2, vehicle.getCategory());
             pstmt.setString(3, vehicle.getBrand());
             pstmt.setString(4, vehicle.getModel());
-            pstmt.setString(5, String.valueOf(vehicle.getYear()));
+            pstmt.setInt(5, vehicle.getYear());
             pstmt.setString(6, vehicle.getPlate());
 
             pstmt.executeUpdate();
@@ -98,7 +98,7 @@ public class VehicleJdbcRepository implements VehicleRepository {
         v.setId(rs.getString("id"));
         v.setBrand(rs.getString("brand"));
         v.setModel(rs.getString("model"));
-        v.setYear(Integer.parseInt(rs.getString("year")));
+        v.setYear(rs.getInt("year"));
         v.setCategory(rs.getString("category"));
         v.setPlate(rs.getString("plate"));
         return v;
