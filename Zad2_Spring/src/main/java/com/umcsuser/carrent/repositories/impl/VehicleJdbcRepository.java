@@ -58,9 +58,9 @@ public class VehicleJdbcRepository implements VehicleRepository {
 
     @Override
     public Vehicle save(Vehicle vehicle) {
-        String sql = "INSERT INTO vehicle (id, category, brand, model, year, plate) VALUES (?, ?, ?, ?, ?, ?) " +
+        String sql = "INSERT INTO vehicle (id, category, brand, model, year, plate, price) VALUES (?, ?, ?, ?, ?, ?, ?) " +
                 "ON CONFLICT (id) DO UPDATE SET category = EXCLUDED.category, brand = EXCLUDED.brand, " +
-                "model = EXCLUDED.model, year = EXCLUDED.year, plate = EXCLUDED.plate";
+                "model = EXCLUDED.model, year = EXCLUDED.year, plate = EXCLUDED.plate, price = EXCLUDED.price";
 
         Connection conn = DataSourceUtils.getConnection(dataSource);
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -70,6 +70,7 @@ public class VehicleJdbcRepository implements VehicleRepository {
             pstmt.setString(4, vehicle.getModel());
             pstmt.setInt(5, vehicle.getYear());
             pstmt.setString(6, vehicle.getPlate());
+            pstmt.setDouble(7, vehicle.getPrice());
 
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -101,6 +102,9 @@ public class VehicleJdbcRepository implements VehicleRepository {
         v.setYear(rs.getInt("year"));
         v.setCategory(rs.getString("category"));
         v.setPlate(rs.getString("plate"));
+
+        v.setPrice(rs.getDouble("price"));
+
         return v;
     }
 }
