@@ -4,6 +4,8 @@ import com.umcsuser.carrent.models.Rental;
 import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
+import com.umcsuser.carrent.repositories.UserRepository;
+import com.umcsuser.carrent.repositories.VehicleRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
@@ -19,9 +21,13 @@ import java.util.Optional;
 public class RentalJdbcRepository implements RentalRepository {
 
     private final DataSource dataSource;
+    private final VehicleRepository vehicleRepository;
+    private final UserRepository userRepository;
 
-    public RentalJdbcRepository(DataSource dataSource) {
+    public RentalJdbcRepository(DataSource dataSource, VehicleRepository vehicleRepository, UserRepository userRepository) {
         this.dataSource = dataSource;
+        this.vehicleRepository = vehicleRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -118,12 +124,12 @@ public class RentalJdbcRepository implements RentalRepository {
         Rental r = new Rental();
         r.setId(rs.getString("id"));
 
-        Vehicle vehicle = new Vehicle();
-        vehicle.setId(rs.getString("vehicle_id"));
+        String vehicleId = rs.getString("vehicle_id");
+        Vehicle vehicle = vehicleRepository.findById(vehicleId).orElse(new Vehicle());
         r.setVehicle(vehicle);
 
-        User user = new User();
-        user.setId(rs.getString("user_id"));
+        String userId = rs.getString("user_id");
+        User user = userRepository.findById(userId).orElse(new User());
         r.setUser(user);
 
         r.setRentDate(rs.getString("rent_date"));
