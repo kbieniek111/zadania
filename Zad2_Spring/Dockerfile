@@ -13,3 +13,4 @@ COPY --from=builder /app/target/*.jar app.jar
 COPY --from=builder /app/*.json ./
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+
