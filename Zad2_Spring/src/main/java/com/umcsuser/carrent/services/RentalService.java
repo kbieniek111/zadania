@@ -4,21 +4,26 @@ import com.umcsuser.carrent.models.Rental;
 import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
+import com.umcsuser.carrent.repositories.UserRepository; // DODANO IMPORT
 import com.umcsuser.carrent.repositories.VehicleRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @org.springframework.stereotype.Service
 @org.springframework.transaction.annotation.Transactional
 public class RentalService implements IRentalService {
+
     private final RentalRepository rentalRepository;
     private final VehicleRepository vehicleRepository;
+    private final UserRepository userRepository;
 
-    public RentalService(RentalRepository rentalRepository, VehicleRepository vehicleRepository) {
+    public RentalService(RentalRepository rentalRepository, VehicleRepository vehicleRepository, UserRepository userRepository) {
         this.rentalRepository = rentalRepository;
         this.vehicleRepository = vehicleRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -27,17 +32,18 @@ public class RentalService implements IRentalService {
             throw new IllegalStateException("Pojazd jest już wypożyczony.");
         }
 
-        User tempUser = new User();
-        tempUser.setId(userId);
+        User fullUser = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono użytkownika o ID: " + userId));
 
-        Vehicle tempVehicle = new Vehicle();
-        tempVehicle.setId(vehicleId);
+        Vehicle fullVehicle = vehicleRepository.findById(vehicleId)
+                .orElseThrow(() -> new IllegalArgumentException("Nie znaleziono pojazdu o ID: " + vehicleId));
 
         Rental rental = Rental.builder()
-                .user(tempUser)
-                .vehicle(tempVehicle)
+                .user(fullUser)
+                .vehicle(fullVehicle)
                 .rentDate(LocalDateTime.now().toString())
                 .build();
+
         rentalRepository.save(rental);
     }
 

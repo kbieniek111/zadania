@@ -38,4 +38,8 @@ public class UserService implements IUserService {
 
         userRepository.deleteById(targetUserId);
     }
+    @Override
+    public User save(User user) {
+        return userRepository.save(user);
+    }
 }

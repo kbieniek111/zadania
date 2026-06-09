@@ -10,4 +10,5 @@ public interface IUserService {
     User findById(String userId);
 
     void deleteUser(String targetUserId, String loggedUserId);
+    User save(User user);
 }
