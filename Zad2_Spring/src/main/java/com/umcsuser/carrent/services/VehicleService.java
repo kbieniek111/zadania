@@ -3,16 +3,24 @@ package com.umcsuser.carrent.services;
 import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
 import com.umcsuser.carrent.repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
+
 @org.springframework.stereotype.Service
 @org.springframework.transaction.annotation.Transactional
 public class VehicleService implements IVehicleService {
+
     private final VehicleRepository vehicleRepository;
     private final RentalRepository rentalRepository;
     private final VehicleValidator vehicleValidator;
 
-    public VehicleService(VehicleRepository vehicleRepository, RentalRepository rentalRepository, VehicleValidator vehicleValidator) {
+
+    public VehicleService(
+            @Qualifier("vehicleJdbcRepository") VehicleRepository vehicleRepository,
+            @Qualifier("rentalJdbcRepository") RentalRepository rentalRepository,
+            VehicleValidator vehicleValidator) {
+
         this.vehicleRepository = vehicleRepository;
         this.rentalRepository = rentalRepository;
         this.vehicleValidator = vehicleValidator;

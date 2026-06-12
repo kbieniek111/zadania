@@ -6,6 +6,7 @@ import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
 import com.umcsuser.carrent.repositories.UserRepository;
 import com.umcsuser.carrent.repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.stereotype.Repository;
@@ -24,7 +25,11 @@ public class RentalJdbcRepository implements RentalRepository {
     private final VehicleRepository vehicleRepository;
     private final UserRepository userRepository;
 
-    public RentalJdbcRepository(DataSource dataSource, VehicleRepository vehicleRepository, UserRepository userRepository) {
+    // Poprawiony konstruktor:
+    public RentalJdbcRepository(
+            DataSource dataSource,
+            @Qualifier("vehicleJdbcRepository") VehicleRepository vehicleRepository,
+            @Qualifier("userJdbcRepository") UserRepository userRepository) {
         this.dataSource = dataSource;
         this.vehicleRepository = vehicleRepository;
         this.userRepository = userRepository;

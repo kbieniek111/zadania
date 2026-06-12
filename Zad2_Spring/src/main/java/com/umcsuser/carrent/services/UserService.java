@@ -2,14 +2,17 @@ package com.umcsuser.carrent.services;
 
 import com.umcsuser.carrent.models.User;
 import com.umcsuser.carrent.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Qualifier; // DODANY IMPORT
 import java.util.List;
+
 @org.springframework.stereotype.Service
 @org.springframework.transaction.annotation.Transactional
 public class UserService implements IUserService {
+
     private final UserRepository userRepository;
     private final IRentalService rentalService;
 
-    public UserService(UserRepository userRepository, IRentalService rentalService) {
+    public UserService(@Qualifier("userJdbcRepository") UserRepository userRepository, IRentalService rentalService) {
         this.userRepository = userRepository;
         this.rentalService = rentalService;
     }
@@ -38,6 +41,7 @@ public class UserService implements IUserService {
 
         userRepository.deleteById(targetUserId);
     }
+
     @Override
     public User save(User user) {
         return userRepository.save(user);

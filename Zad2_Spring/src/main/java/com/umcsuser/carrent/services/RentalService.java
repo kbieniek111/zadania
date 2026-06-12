@@ -6,21 +6,27 @@ import com.umcsuser.carrent.models.Vehicle;
 import com.umcsuser.carrent.repositories.RentalRepository;
 import com.umcsuser.carrent.repositories.UserRepository; // DODANO IMPORT
 import com.umcsuser.carrent.repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-@org.springframework.stereotype.Service
-@org.springframework.transaction.annotation.Transactional
+@Service
 public class RentalService implements IRentalService {
 
     private final RentalRepository rentalRepository;
     private final VehicleRepository vehicleRepository;
     private final UserRepository userRepository;
 
-    public RentalService(RentalRepository rentalRepository, VehicleRepository vehicleRepository, UserRepository userRepository) {
+    // Ręczny konstruktor ze wskazaniem KONKRETNYCH repozytoriów:
+    public RentalService(
+            @Qualifier("rentalJdbcRepository") RentalRepository rentalRepository,
+            @Qualifier("vehicleJdbcRepository") VehicleRepository vehicleRepository,
+            @Qualifier("userJdbcRepository") UserRepository userRepository) {
+
         this.rentalRepository = rentalRepository;
         this.vehicleRepository = vehicleRepository;
         this.userRepository = userRepository;
