@@ -21,7 +21,6 @@ public class RentalService implements IRentalService {
     private final VehicleRepository vehicleRepository;
     private final UserRepository userRepository;
 
-    // Ręczny konstruktor ze wskazaniem KONKRETNYCH repozytoriów:
     public RentalService(
             @Qualifier("rentalJdbcRepository") RentalRepository rentalRepository,
             @Qualifier("vehicleJdbcRepository") VehicleRepository vehicleRepository,
